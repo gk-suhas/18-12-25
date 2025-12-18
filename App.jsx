@@ -1,15 +1,10 @@
 import React from 'react'
-import { useSelector,useDispatch } from 'react-redux'
-import { increment,decrement } from './counterActions'
+import { useSelector } from 'react-redux'
+import { selectTotalPrice } from './cartSelector'
 function App() {
-  const dispatch=useDispatch()
-  const value=useSelector((state)=>state.counter.value)
+  const total=useSelector(selectTotalPrice)
   return (
-    <>
-    <h1>{value}</h1>
-    <button onClick={()=>dispatch(increment(1))}>+</button>
-    <button onClick={()=>dispatch(decrement(-1))}>-</button>
-    </>
+    <div>{total}</div>
   )
 }
 
