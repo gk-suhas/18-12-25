@@ -1,26 +1,14 @@
-import React,{useEffect} from 'react'
-import { fetchTodos } from './todoSlice'
+import React from 'react'
 import { useSelector,useDispatch } from 'react-redux'
+import { increment,decrement } from './counterActions'
 function App() {
-  const {todos,status,error}=useSelector((state)=>state.todos)
   const dispatch=useDispatch()
-  useEffect(()=>{
-    dispatch(fetchTodos())
-  },[dispatch])
+  const value=useSelector((state)=>state.counter.value)
   return (
     <>
-    <h1>todos</h1>
-    {status==="loading" && <p>loading</p>}
-    {status==="failed" && <p>error</p>}
-    {status==="succeeded" && (
-      <ul>
-        {todos.map((todo)=>(
-          <li key={todo.id}>
-            {todo.title} {todo.completed? "yes":"no"}
-          </li>
-        ))}
-      </ul>
-    )}
+    <h1>{value}</h1>
+    <button onClick={()=>dispatch(increment(1))}>+</button>
+    <button onClick={()=>dispatch(decrement(-1))}>-</button>
     </>
   )
 }
