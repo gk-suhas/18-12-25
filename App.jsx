@@ -1,10 +1,14 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
-import { selectTotalPrice } from './cartSelector'
+import { useSelector,useDispatch } from 'react-redux'
 function App() {
-  const total=useSelector(selectTotalPrice)
+  const dispatch=useDispatch()
+  const count=useSelector((state)=>state.counter.value)
   return (
-    <div>{total}</div>
+    <>
+    <h1>{count}</h1>
+    <button onClick={()=>{dispatch({type:"counter/increment"})}}>+</button>
+    <button onClick={()=>{dispatch({type:"counter/decrement"})}}>-</button>
+    </>
   )
 }
 
